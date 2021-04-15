@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.todoapp.ui.fragment.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.todoapp.ui.fragment.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_allTaskListFragment"
+            app:destination="@id/allTaskListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allTaskListFragment"
+        android:name="com.example.todoapp.ui.fragment.AllTaskListFragment"
+        android:label="AllTaskListFragment" >
+        <action
+            android:id="@+id/action_allTaskListFragment_to_taskListFragment"
+            app:destination="@id/taskListFragment" />
+        <action
+            android:id="@+id/action_allTaskListFragment_to_AllTaskListBottomSheet"
+            app:destination="@id/AllTaskListBottomSheet" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskListFragment"
+        android:name="com.example.todoapp.ui.fragment.TaskListFragment"
+        android:label="fragment_task_list"
+        tools:layout="@layout/fragment_task_list" >
+        <action
+            android:id="@+id/action_taskListFragment_to_taskDetailsFragment"
+            app:destination="@id/taskDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskDetailsFragment"
+        android:name="com.example.todoapp.ui.fragment.TaskDetailsFragment"
+        android:label="fragment_task_details"
+        tools:layout="@layout/fragment_task_details" />
+
+    <dialog
+        android:id="@+id/AllTaskListBottomSheet"
+        android:name="com.example.todoapp.ui.bottomSheet.AllTaskListBottomSheet"
+        android:label="bottom_sheet_all_task_list"
+        android:layout="@layout/bottom_sheet_all_task_list"/>
+</navigation>

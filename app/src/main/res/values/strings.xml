@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">TODO App</string>
+    <string name="add_task">Add Task</string>
+    <string name="add_task_list">new task list</string>
+    <string name="new_list">new list</string>
+    <string name="cancel">Cancel</string>
+    <string name="submit">submit</string>
+    <string-array name="default_list">
+        <item>My Day</item>
+        <item>Important</item>
+        <item>Planned</item>
+        <item>All</item>
+        <item>Completed</item>
+        <item>Assigned to you</item>
+        <item>Tasks</item>
+    </string-array>
+
+</resources>
