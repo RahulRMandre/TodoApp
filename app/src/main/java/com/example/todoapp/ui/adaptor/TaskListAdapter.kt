@@ -33,13 +33,15 @@ class TaskListAdapter(private val dataSet: TaskListViewModel) :
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        val currentUser: Task?= dataSet.tasks.value?.get(position)
-        if (currentUser != null) {
-            viewHolder.binding.task=currentUser
+        val currentTask: Task?= dataSet.tasks.value?.get(position)
+        if (currentTask != null) {
+            viewHolder.binding.task=currentTask
         }
         viewHolder.binding.body.setOnClickListener {
             val bundle= Bundle()
-            bundle.putInt("position",position)
+            if (currentTask != null) {
+                bundle.putString("id",currentTask.id)
+            }
             it.findNavController().navigate(R.id.action_taskListFragment_to_taskDetailsFragment,bundle)
         }
     }

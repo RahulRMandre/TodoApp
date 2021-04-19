@@ -21,12 +21,12 @@
         android:layout_height="wrap_content"
         android:text="@={task.title}"/>
 
-   <TextView
+<!--   <TextView
         android:id="@+id/details"
         app:layout_constraintTop_toBottomOf="@id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@={task.details}"/>
+        android:text="@={task.details}"/>-->
 
 
 

@@ -15,6 +15,7 @@ import com.example.todoapp.data.model.AllTaskTitles
 import com.example.todoapp.data.model.Task
 import com.example.todoapp.databinding.AllTaskListViewBinding
 import com.example.todoapp.databinding.TaskListViewBinding
+import com.example.todoapp.ui.fragment.AllTaskListFragment
 import com.example.todoapp.ui.viewmodel.AllTaskListViewModel
 import com.example.todoapp.ui.viewmodel.TaskListViewModel
 import com.example.todoapp.ui.viewmodel.TaskViewModel
@@ -48,7 +49,7 @@ class AllTaskListAdapter(private val dataSet: AllTaskListViewModel) :
         }
         viewHolder.binding.title.setOnClickListener {
             val bundle= Bundle()
-            bundle.putInt("position",position)
+            bundle.putString("parentId",currentTitle?.id)
             it.findNavController().navigate(R.id.action_allTaskListFragment_to_taskListFragment,bundle)
         }
     }

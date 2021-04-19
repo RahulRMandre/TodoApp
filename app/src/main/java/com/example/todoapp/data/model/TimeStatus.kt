@@ -18,4 +18,5 @@ enum class TimeStatus {
     IN_FEW_MONTHS,
     IN_A_YEAR,
     IN_FEW_YEARS,
+    INVALID,
 }

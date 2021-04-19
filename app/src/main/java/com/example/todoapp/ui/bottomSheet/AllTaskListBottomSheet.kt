@@ -13,7 +13,7 @@ import com.example.todoapp.ui.fragment.TODOApplication
 import com.example.todoapp.ui.viewmodel.AllTaskTitlesViewModel
 import com.example.todoapp.ui.viewmodel.UserViewModel
 import com.example.todoapp.ui.viewmodel.UserViewModelFactory
-import com.example.todoapp.ui.viewmodel.allTaskTitlesViewModelFactory
+import com.example.todoapp.ui.viewmodel.AllTaskTitlesViewModelFactory
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.CoroutineScope
@@ -23,6 +23,7 @@ import kotlinx.coroutines.launch
 class AllTaskListBottomSheet:BottomSheetDialogFragment() {
 lateinit var binding:BottomSheetAllTaskListBinding
 lateinit var allTaskTitlesViewModel: AllTaskTitlesViewModel
+lateinit var userId:String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +33,12 @@ lateinit var allTaskTitlesViewModel: AllTaskTitlesViewModel
         return binding.root
 
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        userId = arguments?.getString("userId").toString()
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,7 +53,8 @@ lateinit var allTaskTitlesViewModel: AllTaskTitlesViewModel
                     allTaskTitlesViewModel.insert(
                         AllTaskTitles(
                             binding.listName.text.toString(),
-                            TitleType.CUSTOM
+                            userId,
+                            ""
                         )
                     )
                 }
@@ -56,11 +64,11 @@ lateinit var allTaskTitlesViewModel: AllTaskTitlesViewModel
         }
     }
 
-    fun initViewModel(){
+    private fun initViewModel(){
         val app = activity?.applicationContext as TODOApplication
         allTaskTitlesViewModel = ViewModelProvider(
             this,
-            allTaskTitlesViewModelFactory(app.repository)
+            AllTaskTitlesViewModelFactory(app.repository)
         ).get(AllTaskTitlesViewModel::class.java)
     }
 

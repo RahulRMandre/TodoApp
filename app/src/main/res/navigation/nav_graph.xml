@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_taskListFragment_to_taskDetailsFragment"
             app:destination="@id/taskDetailsFragment" />
+        <action
+            android:id="@+id/action_taskListFragment_to_TaskListBottomSheet"
+            app:destination="@id/TaskListBottomSheet" />
     </fragment>
     <fragment
         android:id="@+id/taskDetailsFragment"
@@ -55,4 +58,15 @@
         android:name="com.example.todoapp.ui.bottomSheet.AllTaskListBottomSheet"
         android:label="bottom_sheet_all_task_list"
         android:layout="@layout/bottom_sheet_all_task_list"/>
+    <dialog
+        app:popUpTo="@id/taskListFragment"
+        app:popUpToInclusive="true"
+        android:id="@+id/TaskListBottomSheet"
+        android:name="com.example.todoapp.ui.bottomSheet.TaskListBottomSheet"
+        android:label="bottom_sheet_task_list"
+        android:layout="@layout/bottom_sheet_task_list" >
+        <action
+            android:id="@+id/action_TaskListBottomSheet_to_taskListFragment"
+            app:destination="@id/taskListFragment" />
+    </dialog>
 </navigation>

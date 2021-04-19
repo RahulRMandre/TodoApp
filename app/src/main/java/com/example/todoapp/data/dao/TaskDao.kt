@@ -1,21 +1,35 @@
 package com.example.todoapp.data.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Update
+import androidx.room.*
+import androidx.room.OnConflictStrategy.REPLACE
 import com.example.todoapp.data.model.Task
+import kotlinx.coroutines.flow.Flow
+
 @Dao
 interface TaskDao {
-    @Insert
-    fun addTask(task: Task)
+    @Insert(onConflict = REPLACE)
+    suspend fun addTask(task: Task)
 
     @Update
-    fun updatesTask(task: Task)
+    suspend fun updatesTask(task: Task)
 
     @Delete
-    fun deleteTask(task: Task)
+    suspend fun deleteTask(task: Task)
 
+/*    @Query("select * from Task where Task.parentId=:parentId")
+    suspend fun getTasks(parentId:String):List<Task>*/
+
+    @Query("select * from Task where Task.taskListId=:taskListId")
+     fun getTasks(taskListId:String):Flow<List<Task>>
+
+    @Query("select * from Task where Task.id=:taskId")
+     fun getTask(taskId:String):Flow<Task>
+
+    @Query("SELECT * from Task")
+    suspend fun  getAllTasks():List<Task>
+
+    @Insert(onConflict = REPLACE)
+    suspend fun addAll(allTasks: List<Task>)
 
 
 }

@@ -6,20 +6,19 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.todoapp.data.dao.AllTaskTitleDao
+import com.example.todoapp.data.dao.SubTaskDao
 import com.example.todoapp.data.dao.TaskDao
 import com.example.todoapp.data.dao.UserDao
-import com.example.todoapp.data.model.AllTaskTitles
-import com.example.todoapp.data.model.Task
-import com.example.todoapp.data.model.TitleType
-import com.example.todoapp.data.model.User
+import com.example.todoapp.data.model.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Task::class, User::class, AllTaskTitles::class],version = 1,exportSchema = false)
+@Database(entities = [Task::class, User::class, AllTaskTitles::class ,SubTask::class],version = 1,exportSchema = false)
 abstract class TaskRoomDatabase :RoomDatabase(){
     abstract fun taskDao(): TaskDao
     abstract fun userDao(): UserDao
     abstract fun allTaskTitlesDao(): AllTaskTitleDao
+    abstract fun subtaskDao(): SubTaskDao
 
     private class WordDatabaseCallback(
         private val scope: CoroutineScope
@@ -35,18 +34,18 @@ abstract class TaskRoomDatabase :RoomDatabase(){
                     //allTaskTitleDao.deleteAll()
 
                     // Add sample words.
-                    var word = AllTaskTitles("Hello",TitleType.CUSTOM)
+                    /*var word = AllTaskTitles("Hello",TitleType.CUSTOM)
                     allTaskTitleDao.insert(word)
                     word = AllTaskTitles("World!",TitleType.CUSTOM)
                     allTaskTitleDao.insert(word)
 
 
-                    word = AllTaskTitles("TODO!",TitleType.CUSTOM)
-                    allTaskTitleDao.insert(word)
+                    word = AllTaskTitles
+                    allTaskTitleDao.insert(word)*/
 
-                    val userDao=database.userDao()
-                    var user=User("Rahul","rahul.gamil.com")
-                    userDao.loginUser(user)
+                    /*val userDao=database.userDao()
+                    var user=User("rahul","rahul@gmail.com","abc")
+                    userDao.loginUser(user)*/
                 }
             }
         }
@@ -69,7 +68,7 @@ abstract class TaskRoomDatabase :RoomDatabase(){
                     TaskRoomDatabase::class.java,
                     "task_database"
                 )
-                    .addCallback(WordDatabaseCallback(scope))
+                    //.addCallback(WordDatabaseCallback(scope))
                     .build()
 
                 INSTANCE = instance
@@ -77,7 +76,6 @@ abstract class TaskRoomDatabase :RoomDatabase(){
                 instance
             }
         }
-
 
     }
 }

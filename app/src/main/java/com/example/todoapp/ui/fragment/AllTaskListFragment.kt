@@ -28,6 +28,7 @@ class AllTaskListFragment : Fragment() {
     lateinit var binding: FragmentAllTaskListBinding
     private lateinit var defaultTaskListViewModel: AllTaskListViewModel
     private lateinit var userViewModel: UserViewModel
+     var bundle= Bundle()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -45,19 +46,18 @@ class AllTaskListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initDefaultTask()
         initUser()
-
-
+        initDefaultTask()
         binding.newList.setOnClickListener {
-           // CoroutineScope(IO).launch {
-           //     addData()
-           // }
-            findNavController().navigate(R.id.action_allTaskListFragment_to_AllTaskListBottomSheet)
+
+            findNavController().navigate(R.id.action_allTaskListFragment_to_AllTaskListBottomSheet,bundle)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
 
     }
-    //
 
     private  fun initUser() {
         val app = activity?.applicationContext as TODOApplication
@@ -68,13 +68,19 @@ class AllTaskListFragment : Fragment() {
 
         userViewModel.user.observe(viewLifecycleOwner, Observer {
             binding.userViewModel=userViewModel
+            if(userViewModel.user.value!=null){
+
+                bundle.putString("userId", userViewModel.user.value!![0].id)
+                CoroutineScope(IO).launch {
+                    defaultTaskListViewModel.init(userViewModel.user.value!![0].id!!)
+
+                }
+            }
         })
 
     }
 
-    private suspend fun addData() {
-        defaultTaskListViewModel.insert(AllTaskTitles("new task", TitleType.CUSTOM))
-    }
+
 
 
     private fun initDefaultTask() {

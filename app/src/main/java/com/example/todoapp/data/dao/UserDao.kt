@@ -12,7 +12,7 @@ interface UserDao {
     suspend fun loginUser(user: User)
 
     @Query("Select * from User")
-    fun getUser():Flow<User>
+    fun getUser():Flow<List<User>>
 
     @Delete
     suspend fun logoutUser(user:User)

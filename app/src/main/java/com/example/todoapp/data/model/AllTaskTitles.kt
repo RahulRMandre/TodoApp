@@ -4,8 +4,16 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-class AllTaskTitles (
+data class AllTaskTitles (
+
+     var taskListTitle:String,
+     var userId:String,
      @PrimaryKey
-     var title:String,
-     var titleType:TitleType
+     var id:String
+)
+
+
+data class AllTaskTitlesDb(
+     val taskListTitle:String,
+     val userId:String,
 )

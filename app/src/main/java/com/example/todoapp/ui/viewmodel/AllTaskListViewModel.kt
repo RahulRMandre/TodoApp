@@ -23,5 +23,10 @@ class AllTaskListViewModel(private val repository: TaskRepository) :ViewModel(){
           }
      }
 
+    fun init(userId:String){
+        viewModelScope.launch {
+            repository.getAllTaskTitles(userId)
+        }
+    }
 
 }
