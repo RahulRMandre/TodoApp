@@ -14,5 +14,18 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Theme.TODOApp.Title" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
+    <style name="Theme.TODOApp.User" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@color/gray</item>
+
+
+    </style>
     <color name="separator">@color/white</color>
 </resources>

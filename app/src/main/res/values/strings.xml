@@ -7,6 +7,7 @@
     <string name="submit">submit</string>
     <string name="save">save</string>
     <string name="add_subtask">Add Subtask</string>
+    <string name="add">+</string>
     <string-array name="default_list">
         <item>My Day</item>
         <item>Important</item>

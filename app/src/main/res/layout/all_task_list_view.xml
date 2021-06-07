@@ -12,17 +12,32 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_margin="8dp"
         android:id="@+id/parent_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+
+            app:layout_constraintWidth_percent=".1"
+            android:src="@drawable/ic_list"
+            android:id="@+id/list_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
         <TextView
+            app:layout_constraintLeft_toRightOf="@id/list_icon"
+            app:layout_constraintWidth_percent=".8"
+            style="@style/Theme.TODOApp.Title"
             android:id="@+id/title"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="@={alltasktitle.taskListTitle}"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/list_icon"
+            app:layout_constraintBottom_toBottomOf="@id/list_icon"
             tools:text="Title" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -5,11 +5,16 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class SubTask(
-    @PrimaryKey(autoGenerate = true)
-    val id:Int=0,
-    val parentId:String,
+    @PrimaryKey
+    val id:String,
+    val taskId:String,
     var title: String,
-    var isComplete: Boolean=false
+    var finish: Int
 )
 
+data class SubTaskDb(
+    val taskId:String,
+    var title: String,
+    var finish: Int
+)
 

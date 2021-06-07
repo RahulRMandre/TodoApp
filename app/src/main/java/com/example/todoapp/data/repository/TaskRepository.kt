@@ -2,7 +2,6 @@ package com.example.todoapp.data.repository
 
 import android.util.Log
 import androidx.annotation.WorkerThread
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import com.example.todoapp.data.api.UserApiService
@@ -88,9 +87,6 @@ class TaskRepository(
         }
 
     }
-    fun getSubTask(parentId: String): Flow<List<SubTask>> {
-        return subTaskDao.getSubTask(parentId)
-    }
 
     suspend fun insertTask(task: Task, subTasks: ArrayList<SubTask>?) {
       /*  taskDao.addTask(task)
@@ -102,7 +98,7 @@ class TaskRepository(
             task.title,
             task.details,
             task.completionDate,
-            task.isComplete,
+            task.finish,
             task.createdAt
         )
         try {
@@ -126,6 +122,58 @@ class TaskRepository(
             userApiService.updateTask(task)
             initTasks(task.taskListId)
         }
+    }
+
+    suspend fun getSubTasks(taskId: String):ArrayList<SubTask>{
+        //return subTaskDao.getSubTask(taskId).asLiveData() as MutableLiveData<ArrayList<SubTask>>
+        val res= subTaskDao.getAllSubTasks() as ArrayList<SubTask>
+        return res
+    }
+
+
+    suspend fun insertSubTask(subTaskDb: SubTaskDb) {
+        try {
+            userApiService.addSubTask(subTaskDb)
+            initSubTask(subTaskDb.taskId)
+        }
+        catch (e:Exception){
+            Log.d("error",e.toString())
+        }
+
+    }
+
+    suspend fun deleteSubTask(id: String) {
+        try {
+            userApiService.deleteSubTask(id)
+            subTaskDao.deleteSubtask(id)
+        }
+        catch (e:Exception){
+            Log.d("error delete subtask",e.toString())
+        }
+
+    }
+
+    suspend fun initSubTask(taskId:String) {
+         Log.d("init","subtask")
+        try {
+            val subTasks=userApiService.getAllSubTasks(taskId);
+            subTaskDao.addSubTasks(subTasks)
+
+        }
+        catch (e:Exception){
+            Log.d("error",e.toString())
+        }
+    }
+
+    suspend fun updateSubTask(subTask: SubTask) {
+        try {
+            userApiService.updateSubTask(subTask)
+            initSubTask(subTask.taskId)
+        }
+        catch (e:Exception){
+            Log.d("error",e.toString())
+        }
+
     }
 
 

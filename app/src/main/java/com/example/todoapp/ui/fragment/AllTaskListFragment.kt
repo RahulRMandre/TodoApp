@@ -1,5 +1,6 @@
 package com.example.todoapp.ui.fragment
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todoapp.R
-import com.example.todoapp.data.model.AllTaskTitles
-import com.example.todoapp.data.model.TitleType
 import com.example.todoapp.databinding.FragmentAllTaskListBinding
 import com.example.todoapp.ui.adaptor.AllTaskListAdapter
 import com.example.todoapp.ui.viewmodel.AllTaskListViewModel
@@ -31,6 +30,7 @@ class AllTaskListFragment : Fragment() {
      var bundle= Bundle()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        activity?.actionBar?.hide()
     }
 
     override fun onCreateView(
@@ -50,7 +50,10 @@ class AllTaskListFragment : Fragment() {
         initDefaultTask()
         binding.newList.setOnClickListener {
 
-            findNavController().navigate(R.id.action_allTaskListFragment_to_AllTaskListBottomSheet,bundle)
+            findNavController().navigate(
+                R.id.action_allTaskListFragment_to_AllTaskListBottomSheet,
+                bundle
+            )
         }
     }
 
@@ -67,8 +70,8 @@ class AllTaskListFragment : Fragment() {
         ).get(UserViewModel::class.java)
 
         userViewModel.user.observe(viewLifecycleOwner, Observer {
-            binding.userViewModel=userViewModel
-            if(userViewModel.user.value!=null){
+            binding.userViewModel = userViewModel
+            if (userViewModel.user.value != null) {
 
                 bundle.putString("userId", userViewModel.user.value!![0].id)
                 CoroutineScope(IO).launch {

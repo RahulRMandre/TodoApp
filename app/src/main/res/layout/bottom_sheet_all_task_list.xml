@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="allTaskTitlesViewModel"
             type="com.example.todoapp.ui.viewmodel.AllTaskTitlesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/green_600"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.bottomSheet.AllTaskListBottomSheet">
@@ -22,37 +24,29 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:text="@={allTaskTitlesViewModel.allTaskTitles.taskListTitle}"
-            android:id="@+id/list_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/add_task_list"
-            app:layout_constraintTop_toBottomOf="@id/title" />
-
-        <Button
-            app:layout_constraintTop_toBottomOf="@id/list_name"
-            android:id="@+id/cancel"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/submit"
-            android:layout_width="wrap_content"
+            android:id="@+id/list_name"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/cancel"/>
+            android:ellipsize="end"
+            android:hint="@string/add_task_list"
+            android:singleLine="true"
+            android:text="@={allTaskTitlesViewModel.allTaskTitles.taskListTitle}"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintWidth_percent=".8" />
 
-        <Button
-            app:layout_constraintTop_toTopOf="@id/cancel"
-            app:layout_constraintBottom_toBottomOf="@id/cancel"
-            android:id="@+id/submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_save"
+            android:id="@+id/save"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:text="@string/submit"
-            app:layout_constraintLeft_toRightOf="@id/cancel"
-            app:layout_constraintRight_toRightOf="parent"/>
-
-
-
-
-
-
+            app:layout_constraintBottom_toBottomOf="@id/list_name"
+            app:layout_constraintLeft_toRightOf="@id/list_name"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/list_name"
+            app:layout_constraintWidth_percent=".2" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

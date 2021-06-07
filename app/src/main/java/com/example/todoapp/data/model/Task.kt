@@ -12,7 +12,7 @@ data class Task(
     var title: String,
     var details: String="",
     var completionDate: Long=0,
-    var isComplete: Int=0,
+    var finish: Int=0,
     //var timeStatus: TimeStatus,
     var createdAt: Long=0,
 )
@@ -23,7 +23,7 @@ data class TaskDb(
     var title: String,
     var details: String="",
     var completionDate: Long=0,
-    var isComplete: Int=0,
+    var finish: Int=0,
     //var timeStatus: TimeStatus,
     var createdAt: Long=0,
 )

@@ -1,7 +1,6 @@
 package com.example.todoapp.data.api
 
 import com.example.todoapp.data.model.*
-import com.google.android.play.core.tasks.Tasks
 import retrofit2.http.*
 
 
@@ -34,4 +33,19 @@ interface UserApiService {
 
     @POST("tasks")
     suspend fun updateTask(@Body task: Task)
+
+    @POST("subTasks")
+    suspend fun addSubTask(@Body subTaskDb: SubTaskDb)
+
+    @POST("subTasks")
+    suspend fun updateSubTask(@Body subTask: SubTask)
+
+
+    @GET("subTasks")
+    suspend fun getAllSubTasks(@Query("taskId")taskId:String):List<SubTask>
+
+    @DELETE("subTasks")
+    suspend fun deleteSubTask(@Query("id")id:String)
+
+
 }

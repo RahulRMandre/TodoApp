@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.fragment.UserFragment">
+
+    <data>
+        <variable
+            name="userViewModel"
+            type="com.example.todoapp.ui.viewmodel.UserViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/username"
+            style="@style/Theme.TODOApp.User"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{userViewModel.user[0].name}"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Rahul Mandre" />
+
+        <TextView
+            android:id="@+id/user_email"
+            style="@style/Theme.TODOApp.User"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{userViewModel.user[0].email}"
+            app:layout_constraintTop_toBottomOf="@id/username"
+            tools:text="rahul.mandre@outlook.com" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

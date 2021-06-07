@@ -43,11 +43,9 @@ lateinit var userId:String
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewModel()
-        binding.cancel.setOnClickListener {
-            findNavController().popBackStack()
-        }
 
-        binding.submit.setOnClickListener {
+
+        binding.save.setOnClickListener {
             if(binding.listName.text.isNotBlank()) {
                 CoroutineScope(IO).launch {
                     allTaskTitlesViewModel.insert(
